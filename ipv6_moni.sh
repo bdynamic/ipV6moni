@@ -4,6 +4,16 @@ CONFIG="./configs/muc.conf"
 source "$CONFIG"
 
 
+
+#check if sipcalc is installed
+SIPCALC=$(which sipcalc)
+if [ -z "$SIPCALC" ]; then
+	echo "I need sipcalc to run"
+	echo "please install via sudo apt install sipcalc"
+	exit 1
+fi
+
+
 OLDIP=$(ping6 -c1 $DOMAIN |grep "icmp_seq=1"|grep "bytes from"|cut -d " " -f 4)
 echo "Monitoring $OLDIP"
 
@@ -22,7 +32,12 @@ while true; do
     echo "Not reachable"
   else
   	echo "Changed to $NEWIP"
-  	EXECCOMMAND="$CMDONCHANGE $NEWIP"
+  	if [ "$SUBNET" == "56" ]; then
+  		PREFIX=$( sipcalc "$NEWIP"|grep "Expanded"|cut -d "-" -f 2|cut -b 2-|cut -b -17)
+  	fi
+
+
+  	EXECCOMMAND="$CMDONCHANGE $PREFIX$POSTFIX"
   	$EXECCOMMAND
 
     OLDIP="$NEWIP"
