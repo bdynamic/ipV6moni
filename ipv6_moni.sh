@@ -40,7 +40,7 @@ while true; do
 
   	EXECCOMMAND=$(echo $CMDONCHANGE | sed "s/<ipv6_new>/$PREFIX$POSTFIX/g")
   	echo "Will execute $EXECCOMMAND"
-  	#$EXECCOMMAND
+  	eval $EXECCOMMAND
 
     OLDIP="$NEWIP"
 
