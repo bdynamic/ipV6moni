@@ -23,6 +23,7 @@ while true; do
   else
   	echo "Changed to $NEWIP"
   	EXECCOMMAND="$CMDONCHANGE $NEWIP"
+  	$EXECCOMMAND
 
     OLDIP="$NEWIP"
 
