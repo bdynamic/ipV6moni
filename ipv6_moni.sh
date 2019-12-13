@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG="./configs/muc.conf"
+CONFIG="$1"
 source "$CONFIG"
 
 
