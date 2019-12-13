@@ -17,6 +17,7 @@ fi
 
 OLDIP=$(ping6 -c1 $DOMAIN |grep "icmp_seq=1"|grep "bytes from"|cut -d " " -f 4)
 echo "Monitoring $OLDIP"
+logger "ipV6 moni config $CONFIG started with $OLDIP"
 
 if [ -z "$OLDIP" ]; then
 	echo "Could not ping $DOMAIN - exit"
@@ -39,7 +40,8 @@ while true; do
 
 
   	EXECCOMMAND=$(echo $CMDONCHANGE | sed "s/<ipv6_new>/$PREFIX$POSTFIX/g")
-  	echo "Will execute $EXECCOMMAND"
+  	#echo "Will execute $EXECCOMMAND"
+  	logger "ipV6 moni config $CONFIG updated to $PREFIX$POSTFIX"
   	eval $EXECCOMMAND
 
     OLDIP="$NEWIP"
