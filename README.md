@@ -26,7 +26,7 @@ SLEEPTIME=10                                  #sleep time between the checks
 Running
 -------
 Execute ipv6_moni.sh with the config as a first paramter.
-You can for example start it via rc.local
+Can be started via rc.local
 
 Example /etc/rc.local
 ```
@@ -35,5 +35,6 @@ Example /etc/rc.local
 /usr/local/sbin/ipv6_moni.sh /etc/ipv6_moni/sample.conf &
 exit 0
 ```
+Don't forget a chmod +x /etc/rc.local
 
 
