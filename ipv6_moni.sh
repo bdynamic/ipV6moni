@@ -9,7 +9,8 @@ source "$CONFIG"
 SIPCALC=$(which sipcalc)
 if [ -z "$SIPCALC" ]; then
 	echo "I need sipcalc to run"
-	echo "please install via sudo apt install sipcalc"
+	echo "please install by calling:" 
+	echo " sudo apt install sipcalc"
 	exit 1
 fi
 
@@ -37,8 +38,9 @@ while true; do
   	fi
 
 
-  	EXECCOMMAND="$CMDONCHANGE $PREFIX$POSTFIX"
-  	$EXECCOMMAND
+  	EXECCOMMAND=$(echo $CMDONCHANGE | sed "s/<ipv6_new>/$PREFIX$POSTFIX/g")
+  	echo "Will execute $EXECCOMMAND"
+  	#$EXECCOMMAND
 
     OLDIP="$NEWIP"
 
