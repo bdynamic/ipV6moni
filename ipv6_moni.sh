@@ -1,4 +1,7 @@
 #!/bin/bash
+#Pubished under GNU GENERAL PUBLIC LICENSE 3., Author: Birk Bremer
+#Project source: https://github.com/bdynamic/ipV6moni
+
 
 CONFIG="$1"
 source "$CONFIG"
